@@ -1,12 +1,11 @@
 import { useState } from "react";
+import { AddTodo } from "../components/AddTodo";
+import { TodoList } from "../components/TodoList";
 
 export const TodoApp = () => {
   // Lógica para almacenar los todos
   const [todos, setTodos] = useState([]);
 
-  // Lógica para añadir un todo
-  // Texto del Todo a ser añadido
-  const [todoText, setTodoText] = useState("");
   const addTodo = (text) => {
     setTodos([
       ...todos,
@@ -16,28 +15,21 @@ export const TodoApp = () => {
         completed: false,
       },
     ]);
-    setTodoText('');
-  };
-  // Manejar evento onKeyCapture
-  const handleKeyCapture = (evt) => {
-    console.log("Presionada una tecla", evt.key);
-    if (evt.key == "Enter" && todoText !== "") {
-      addTodo(todoText);
-    }
   };
 
   // Lógica para completar un todo
   const toggleCompleted = (id) => {
-    const filtered = todos.filter((t) => t.id !== id);
-    const foundTodo = todos.find((t) => t.id == id);
-    setTodos([
-      ...filtered,
-      {
-        ...foundTodo,
-        completed: !foundTodo.completed,
-      },
-    ]);
+    const toggled = todos.map((todo) =>
+      todo.id == id
+        ? {
+            ...todo,
+            completed: !todo.completed,
+          }
+        : todo
+    );
+    setTodos(toggled);
   };
+
   return (
     <div className="container">
       {/* Header */}
@@ -61,39 +53,13 @@ export const TodoApp = () => {
       <div className="row mb-3">
         <div className="col-sm-12 col-md-4 mb-2 mb-md-3 mb-lg-0 ">
           <h3>New Todo</h3>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Add Todo"
-            name="desc"
-            onChange={(evt) => setTodoText(evt.target.value)}
-            value={todoText}
-            onKeyDownCapture={handleKeyCapture}
-          />
+          <AddTodo addTodo={addTodo} />
         </div>
 
         {/* TodoList */}
         <div className="col-sm-12 col-md-8">
           <h3>Todo List</h3>
-          <ul className="list-unstyled">
-            {/* TodoList Item */}
-            {todos.map((todo) => {
-              const text = todo.completed ? "Completado" : "Completar";
-              const btnClass = todo.completed ? 'btn-success' : 'btn-warning';
-              return (
-                <li
-                  key={todo.id}
-                  className="d-flex justify-content-between align-items-center bg-light p-3"
-                >
-                  <span>{todo.title}</span>
-                  <button
-                    onClick={() => toggleCompleted(todo.id)}
-                    className={`btn ${btnClass}`}
-                  >{text}</button>
-                </li>
-              );
-            })}
-          </ul>
+          <TodoList todos={todos} toggleCompleted={toggleCompleted} />
         </div>
       </div>
     </div>
