@@ -49,18 +49,9 @@ export const TodoApp = () => {
         </div>
       </div>
 
-      {/* TodoAdd */}
       <div className="row mb-3">
-        <div className="col-sm-12 col-md-4 mb-2 mb-md-3 mb-lg-0 ">
-          <h3>New Todo</h3>
           <AddTodo addTodo={addTodo} />
-        </div>
-
-        {/* TodoList */}
-        <div className="col-sm-12 col-md-8">
-          <h3>Todo List</h3>
           <TodoList todos={todos} toggleCompleted={toggleCompleted} />
-        </div>
       </div>
     </div>
   );

@@ -6,21 +6,24 @@ export function AddTodo({ addTodo }) {
   const [todoText, setTodoText] = useState("");
   // Manejar evento onKeyCapture
   const handleKeyCapture = (evt) => {
-    console.log("Presionada una tecla", evt.key);
     if (evt.key == "Enter" && todoText !== "") {
       addTodo(todoText);
-      setTodoText('');
+      setTodoText("");
     }
+
   };
   return (
-    <input
-      type="text"
-      className="form-control"
-      placeholder="Add Todo"
-      name="desc"
-      onChange={(evt) => setTodoText(evt.target.value)}
-      value={todoText}
-      onKeyDownCapture={handleKeyCapture}
-    />
+    <div className="col-sm-12 col-md-4 mb-2 mb-md-3 mb-lg-0 ">
+      <h3>New Todo</h3>
+      <input
+        type="text"
+        className="form-control"
+        placeholder="Add Todo"
+        name="desc"
+        onChange={(evt) => setTodoText(evt.target.value)}
+        value={todoText}
+        onKeyDownCapture={handleKeyCapture}
+      />
+    </div>
   );
 }
