@@ -4,8 +4,10 @@ export function AddTodo({ addTodo }) {
   // Lógica para añadir un todo
   // Texto del Todo a ser añadido
   const [todoText, setTodoText] = useState("");
-  // Manejar evento onKeyCapture
+
+  // Manejar evento onKeyUpCapture
   const handleKeyCapture = (evt) => {
+    evt.preventDefault();
     if (evt.key == "Enter" && todoText !== "") {
       addTodo(todoText);
       setTodoText("");
@@ -19,10 +21,10 @@ export function AddTodo({ addTodo }) {
         type="text"
         className="form-control"
         placeholder="Add Todo"
-        name="desc"
+        name="newTodo"
         onChange={(evt) => setTodoText(evt.target.value)}
         value={todoText}
-        onKeyDownCapture={handleKeyCapture}
+        onKeyUpCapture={handleKeyCapture}
       />
     </div>
   );
