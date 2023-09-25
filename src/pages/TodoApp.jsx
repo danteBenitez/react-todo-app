@@ -6,30 +6,6 @@ export const TodoApp = () => {
   // Lógica para almacenar los todos
   const [todos, setTodos] = useState([]);
 
-  const addTodo = (text) => {
-    setTodos([
-      ...todos,
-      {
-        id: new Date().getTime(),
-        title: text,
-        completed: false,
-      },
-    ]);
-  };
-
-  // Lógica para completar un todo
-  const toggleCompleted = (id) => {
-    const toggled = todos.map((todo) =>
-      todo.id == id
-        ? {
-            ...todo,
-            completed: !todo.completed,
-          }
-        : todo
-    );
-    setTodos(toggled);
-  };
-
   return (
     <div className="container">
       {/* Header */}
@@ -50,8 +26,8 @@ export const TodoApp = () => {
       </div>
 
       <div className="row mb-3">
-          <AddTodo addTodo={addTodo} />
-          <TodoList todos={todos} toggleCompleted={toggleCompleted} />
+          <AddTodo setTodos={setTodos} todos={todos} />
+          <TodoList todos={todos} setTodos={setTodos} />
       </div>
     </div>
   );
