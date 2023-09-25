@@ -16,15 +16,13 @@ export const TodoApp = () => {
         completed: false,
       },
     ]);
+    setTodoText('');
   };
   // Manejar evento onKeyCapture
   const handleKeyCapture = (evt) => {
     console.log("Presionada una tecla", evt.key);
-    if (evt.key == "Enter") {
+    if (evt.key == "Enter" && todoText !== "") {
       addTodo(todoText);
-      console.log("Añadido todos");
-      console.log(todoText);
-      console.log(todos);
     }
   };
 
