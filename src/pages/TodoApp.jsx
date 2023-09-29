@@ -3,18 +3,13 @@ import { TodoList } from "../components/TodoList";
 import { useTodos } from "../hooks/useTodos";
 
 export const TodoApp = () => {
-  // Lógica para almacenar los todos
   const { 
-      todos, 
-      toggleCompleted,  
-      addTodo,
       showAll,
       showActive,
       showCompleted,
       clearCompleted
     } = useTodos();
 
-  console.log(addTodo);
 
   return (
     <div className="container">
@@ -36,8 +31,8 @@ export const TodoApp = () => {
       </div>
 
       <div className="row mb-3">
-          <AddTodo addTodo={addTodo} todos={todos} />
-          <TodoList todos={todos} toggleCompleted={toggleCompleted} />
+          <AddTodo />
+          <TodoList />
       </div>
     </div>
   );

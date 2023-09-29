@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useTodos } from "../hooks/useTodos";
 
-export function AddTodo({ addTodo }) {
+export function AddTodo() {
+  const { addTodo } = useTodos();
+
   // Lógica para añadir un todo
   // Texto del Todo a ser añadido
   const [todoText, setTodoText] = useState("");

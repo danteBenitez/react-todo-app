@@ -1,4 +1,8 @@
-export function TodoList({ todos, toggleCompleted }) {
+import { useTodos } from "../hooks/useTodos";
+
+export function TodoList() {
+  const { todos, toggleCompleted } = useTodos();
+
   return (
     <div className="col-sm-12 col-md-8">
       <h3>Todo List</h3>
