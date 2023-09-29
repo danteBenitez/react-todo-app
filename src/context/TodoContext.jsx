@@ -11,7 +11,7 @@ const TODO_FILTERS = {
 
 export function TodosContextProvider({ children }) {
   const [allTodos, setAllTodos] = useState([]);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState(TODO_FILTERS.ALL);
 
   const addTodo = (title) => {
     setAllTodos([...allTodos, {
