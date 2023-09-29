@@ -1,16 +1,4 @@
-export function TodoList({ todos, setTodos }) {
-  // Lógica para completar un todo
-  const toggleCompleted = (id) => {
-    const toggled = todos.map((todo) =>
-      todo.id == id
-        ? {
-            ...todo,
-            completed: !todo.completed,
-          }
-        : todo
-    );
-    setTodos(toggled);
-  };
+export function TodoList({ todos, toggleCompleted }) {
   return (
     <div className="col-sm-12 col-md-8">
       <h3>Todo List</h3>

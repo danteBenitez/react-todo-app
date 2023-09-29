@@ -1,21 +1,9 @@
 import { useState } from "react";
 
-export function AddTodo({ todos, setTodos }) {
+export function AddTodo({ addTodo }) {
   // Lógica para añadir un todo
   // Texto del Todo a ser añadido
   const [todoText, setTodoText] = useState("");
-
-  const addTodo = (text) => {
-    const newTodo = {
-        id: new Date().getTime(),
-        title: text,
-        completed: false
-    };
-    setTodos([
-        ...todos,
-        newTodo
-    ]);
-  };
 
   // Manejar evento onKeyUpCapture
   const handleKeyCapture = (evt) => {
@@ -24,8 +12,8 @@ export function AddTodo({ todos, setTodos }) {
       addTodo(todoText);
       setTodoText("");
     }
-
   };
+
   return (
     <div className="col-sm-12 col-md-4 mb-2 mb-md-3 mb-lg-0 ">
       <h3>New Todo</h3>
